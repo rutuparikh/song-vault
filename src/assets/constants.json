@@ -1,0 +1,21 @@
+{
+    "notes": ['Sa', 'Re(k)', 'Re', 'Ga(k)', 'Ga', 'Ma', 'Ma(t)', Pa, Dha(k), Dha, Ni(k), 'Ni'
+              'Sa.', 'Re(k).', 'Re.', 'Ga(k).', 'Ga.', 'Ma.', 'Ma(t).', Pa., Dha(k)., Dha., Ni(k)., 'Ni.'
+              '.Sa', '.Re(k)', '.Re', '.Ga(k)', '.Ga', '.Ma', '.Ma(t)', .Pa, .Dha(k), .Dha, .Ni(k) ,'.Ni'],
+    "chords": [
+        "C", "C#", 'D', "D#", 'E', "F", 'F#', 'G', 'G#', 'A', 'A#', 'B',
+        "Cm", "C#m", 'Dm', "D#m", 'Em', "Fm", 'F#m', 'Gm', 'G#m', 'Am', 'A#m', 'Bm',
+        "Db", "Dbm", "Eb", "Ebm", "Gb", "Gbm", "Bb", "Bbm"
+    ]
+}
+
+
+//validations
+//font convert
+
+k - underline
+t - superscript line
+post . - superscript dot
+. pre - subscript dot
+
+bhatkande fonts
