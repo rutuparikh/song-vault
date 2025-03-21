@@ -1,13 +1,12 @@
-const InputBox = ({ placeholder, value, onChange}) => {
+const InputBox = ({ placeholder, value, onChange, style}) => {
     return (
         <>
-            <div>
-                <input
-                    type="text"
+            <div className="flex">
+                <textarea
                     placeholder={placeholder}
                     value={value}
                     onChange={onChange}
-                    className="input-box grid-cols-auto"
+                    className={style}
                 />
             </div>
         </>

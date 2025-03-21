@@ -11,7 +11,10 @@
 }
 
 .print {
-  @apply w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500;
+  @apply w-full px-4 py-2 border border-gray-300 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500;
+}
+.print-notes {
+  @apply font-bhatkande w-full px-4 py-2 border-l border-r border-gray-300 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500;
 }
 
 .select-box {
@@ -20,4 +23,8 @@
 
 .input-box {
   @apply w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300;
+}
+
+.error {
+  @apply mt-2 text-red-500;
 }

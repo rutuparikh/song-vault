@@ -12,7 +12,7 @@ const SelectBox = ({value, onChange}) => {
         onChange={onChange}
         className="select-box"
       >
-        <option key={`Select`} value="">Select an option</option>
+        {/* <option key={`Select`} value="">Select an option</option> */}
 
         {keys.map((key) => (
           <option key={TaalOptions[key]} value={TaalOptions[key]}>{TaalOptions[key]}</option>

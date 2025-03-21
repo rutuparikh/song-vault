@@ -14,7 +14,8 @@ function App() {
   const [lyrics, setLyrics] = useState('')
   const [notes, setNotes] = useState('')
   const [chord, setChord] = useState('')
-  const [taal, setTaal] = useState('');
+  const [taal, setTaal] = useState('Teen');
+  const [errors, setErrors] = useState({lyrics: '', notes: '', chord: ''});
 
   const handleTaalChange = (event) => {
     console.log(event.target.value);
@@ -43,21 +44,24 @@ function App() {
             <label htmlFor="lyricsTextBox" className="label">
               Lyrics:
             </label>
-            <InputBox id="lyricsTextBox" placeholder="Enter lyrics delimited with space" value={lyrics} onChange={(e) => handleLyricsChange(e, setLyrics)} />
+            <InputBox id="lyricsTextBox" style="input-box" placeholder="Enter lyrics delimited with space" value={lyrics} onChange={(e) => handleLyricsChange(e, setLyrics, setErrors)} />
           </div>
 
           <div className="mx-10 my-5">
             <label htmlFor="notesTextBox" className="label">
               Notes:
             </label>
-            <InputBox id="notesTextBox" placeholder="Enter notes delimited with space" value={notes} onChange={(e) => handleNotesChange(e, setNotes)} />
+            <InputBox id="notesTextBox" style="input-box" placeholder="Enter notes delimited with space" value={notes} onChange={(e) => handleNotesChange(e, setNotes, errors, setErrors)} />
+            {errors.notes && <p className="error">{errors.notes}</p>}
           </div>
+          
 
           <div className="mx-10 my-5">
             <label htmlFor="chordTextBox" className="label">
               Chord:
             </label>
-            <InputBox id="chordTextBox" placeholder="Enter chord delimited with space" value={chord} onChange={(e) => handleChordChange(e, setChord)} />
+            <InputBox id="chordTextBox" style="input-box" placeholder="Enter chord delimited with space" value={chord} onChange={(e) => handleChordChange(e, setChord, errors, setErrors)} />
+            {errors.chord && <p className="error">{errors.chord}</p>}
           </div>
 
         </div>
@@ -75,7 +79,7 @@ function App() {
               
               <div key={`block-${index}`} className="mb-4 p-2 rounded-md">
                 <div className="print">{chunkedLyrics[index] ? chunkedLyrics[index].join(' ') : ''}</div>
-                <div className="print">{chunkedNotes[index] ? chunkedNotes[index].join(' ') : ''}</div>
+                <div className="print-notes">{chunkedNotes[index] ? chunkedNotes[index].join(' ') : ''}</div>
                 <div className="print">{chunkedChord[index] ? chunkedChord[index].join(' ') : ''}</div> 
               </div>
             ))}
