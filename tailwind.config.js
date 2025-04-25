@@ -8,6 +8,7 @@ export default {
     extend: {
       fontFamily: {
         bhatkande: ['ome_bhatkhande_hindi'],
+        sans: ['sans-serif'],
       }
     },
   },

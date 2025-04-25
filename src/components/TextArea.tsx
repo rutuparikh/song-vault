@@ -1,9 +1,8 @@
-const InputBox = ({ placeholder, value, onChange, style}) => {
+const TextArea = ({ placeholder, value, onChange, style}) => {
     return (
         <>
             <div className="flex">
-                <input 
-                    type="text"
+                <textarea
                     placeholder={placeholder}
                     value={value}
                     onChange={onChange}
@@ -14,4 +13,4 @@ const InputBox = ({ placeholder, value, onChange, style}) => {
         </>
     );
 }
-export default InputBox;
+export default TextArea;

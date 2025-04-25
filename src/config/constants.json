@@ -1,8 +1,9 @@
 {
     "notes": [
-        "Sa", "Re(k)", "Re", "Ga(k)", "Ga", "Ma", "Ma(t)", "Pa", "Dha(k)", "Dha", "Ni(k)", "Ni",
-        "Sa.", "Re(k).", "Re.", "Ga(k).", "Ga.", "Ma.", "Ma(t).", "Pa.", "Dha(k).", "Dha.", "Ni(k).", "Ni.",
-        ".Sa", ".Re(k)", ".Re", ".Ga(k)", ".Ga", ".Ma", ".Ma(t)", ".Pa", ".Dha(k)", ".Dha", ".Ni(k)" ,".Ni"
+        "s","R","r","G","g","m","M","p","D","d","N","n",
+        "su","Ru","ru","Gu","gu","mu","Mu","pu","Du","du","Nu","nu",
+        "sl","Rl","rl","Gl","gl","ml","Ml","pl","Dl","dl","Nl","nl",
+        "-","@","#","$"
     ],
     
     "chords": [

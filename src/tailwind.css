@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  @apply font-sans;
+}
+
 .button {
-  @apply mt-4 p-2 text-white bg-gray-500 rounded-lg font-semibold;
+  @apply ml-10 mt-4 mb-4 p-2 text-white bg-gray-500 rounded-lg font-semibold;
 }
 
 .label {
@@ -11,20 +15,36 @@
 }
 
 .print {
-  @apply w-full px-4 py-2 border border-gray-300 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500;
+  @apply flex flex-wrap gap-4 w-full px-4 py-2 bg-gray-100 border-gray-300 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500;
 }
+
 .print-notes {
-  @apply font-bhatkande w-full px-4 py-2 border-l border-r border-gray-300 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500;
+  @apply font-bhatkande flex flex-wrap gap-4 w-full px-4 py-2 leading-[3.2] border-gray-300 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500;
 }
 
 .select-box {
-  @apply p-2 border rounded-lg;
+  @apply p-2 border rounded-lg bg-gray-100;
 }
 
-.input-box {
-  @apply w-full px-4 py-2 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300;
+.text-box {
+  @apply w-full px-4 py-2 border bg-gray-100 border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300;
 }
 
+.text-box-notes {
+  @apply font-bhatkande placeholder:font-sans w-full px-4 py-2 border bg-gray-100 border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300;
+}
 .error {
   @apply mt-2 text-red-500;
+}
+
+.keyboard-keys {
+  @apply p-4 m-2 text-center border bg-gray-100 border-gray-300 rounded-md hover:bg-blue-200 focus:outline-none;
+}
+
+.keyboard-keys-bhatkande {
+  @apply font-bhatkande p-4 m-2 text-center border bg-gray-100 border-gray-300 rounded-md hover:bg-blue-200 focus:outline-none;
+}
+
+.input-text-box {
+  @apply w-full px-4 py-2 border bg-gray-100 border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300;
 }
