@@ -14,6 +14,10 @@ body {
   @apply block text-lg font-semibold text-gray-700 mb-2;
 }
 
+.label-pdf {
+  @apply block text-gray-700 mb-2;
+}
+
 .print {
   @apply flex flex-wrap gap-4 w-full px-4 py-2 bg-gray-100 border-gray-300 text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-500 focus:border-gray-500;
 }
@@ -23,7 +27,7 @@ body {
 }
 
 .select-box {
-  @apply p-2 border rounded-lg bg-gray-100;
+  @apply px-4 py-3 border rounded-lg bg-gray-100 border-gray-300 text-gray-700;
 }
 
 .text-box {
@@ -47,4 +51,8 @@ body {
 
 .input-text-box {
   @apply w-full px-4 py-2 border bg-gray-100 border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-1 focus:ring-gray-300 focus:border-gray-300;
+}
+
+.component-box {
+  @apply mx-10 my-5;
 }

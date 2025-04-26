@@ -1,6 +1,7 @@
 import { TaalOptions } from '../enums/Taal.js';
+import { chords } from '../config/constants.json';
 
-const SelectBox = ({value, onChange}) => {
+export const TaalSelectBox = ({value, onChange}) => {
 
   const keys = Object.keys(TaalOptions);
 
@@ -22,4 +23,23 @@ const SelectBox = ({value, onChange}) => {
   );
 };
 
-export default SelectBox;
+export const ScaleSelectBox = ({value, onChange}) => {
+
+  // const keys = Object.keys(Options);
+
+  return (
+    <div>
+      <select
+        id="scaleOptions"
+        value={value}
+        onChange={onChange}
+        className="select-box"
+      >
+
+        {chords.map((key) => (
+          <option key={key} value={key}>{key}</option>
+        ))}
+      </select>
+    </div>
+  );
+};

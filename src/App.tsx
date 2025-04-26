@@ -1,18 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
-import fonts from './config/fonts.json';
 
 import './tailwind.css';
 
 import TextArea from './components/TextArea.tsx';
-import SelectBox from './components/SelectBox.tsx';
-import handleLyricsChange from './components/LyricsHandler.tsx'
-import handleNotesChange from './components/NotesHandler.tsx'
-import handleChordChange from './components/ChordHandler.tsx'
+import { ScaleSelectBox, TaalSelectBox } from './components/SelectBox.tsx';
+import handleLyricsChange from './utils/LyricsHandler.tsx'
+import handleNotesChange from './utils/NotesHandler.tsx'
+import handleChordChange from './utils/ChordHandler.tsx'
 import { TaalCount } from './enums/Taal.js';
-import { chunkArray } from './components/OutputHandler.tsx';
+import { chunkArray } from './utils/OutputHandler.tsx';
 import { handleExport } from './utils/ExportHandler.tsx';
 import InputBox from './components/InputBox.tsx';
-
+import Keyboard from './components/KeyBoard.tsx';
+import { Display } from './components/Display.tsx';
 
 
 function App() {
@@ -21,60 +21,80 @@ function App() {
   const [chord, setChord] = useState('')
   const [title, setTitle] = useState('')
   const [taal, setTaal] = useState('Teen');
+  const [tempo, setTempo] = useState('');
+  const [scale, setScale] = useState('');
   const [errors, setErrors] = useState({ lyrics: '', notes: '', chord: '' });
 
-  const handleTaalChange = (event) => {
-    setTaal(event.target.value);
-  };
+  // const handleKeyDown = (e) => {
+  //   const key = e.key;
 
-  const handleKeyPress = (key) => {
-    if (key == 'Backspace') {
-      setNotes(notes.slice(0, -1));
-    }
-    else if (key == 'space') {
-      setNotes(notes + ' ');
-    }
-    else {
-      setNotes(notes + key);
-    }
-  };
+  //   if (key === 'Backspace') {
+  //     e.preventDefault();
+  //     setNotes((notes) => notes.slice(0, -1));
+  //   } else if (key === ' ') {
+  //     e.preventDefault();
+  //     setNotes((notes) => notes + ' ');
+  //   } else if (key.length === 1) {
+  //     setNotes((notes) => notes + key);
+  //   }
+  // };
 
-  const bhatkandeLayout = fonts.bhatkande_hindi;
-
+  // useEffect(() => {
+  //   window.addEventListener('keydown', handleKeyDown);
+  //   return () => {
+  //     window.removeEventListener('keydown', handleKeyDown);
+  //   };
+  // }, []);
 
   const chunkedLyrics = chunkArray(lyrics, TaalCount[taal]);
   const chunkedNotes = chunkArray(notes, TaalCount[taal]);
   const chunkedChord = chunkArray(chord, TaalCount[taal]);
-
-  const maxLength = Math.max(chunkedLyrics.length, chunkedNotes.length, chunkedChord.length);
 
   return (
     <>
       <div className="w-screen h-screen bg-gray-100">
         <div className="w-full bg-white px-8 rounded-lg shadow-lg ">
 
-          <div className="mx-10 my-5">
+          <div className="component-box">
             <label htmlFor="titleTextBox" className="label">
               Title:
             </label>
             <InputBox id="titleTextBox" style="input-text-box" placeholder="Enter song title" value={title} onChange={(e) => setTitle(e.target.value)} />
           </div>
 
-          <div className="mx-10 my-5">
+          <div className="flex">
+
+          <div className="component-box">
             <label htmlFor="options" className="label">
               Taal:
             </label>
-            <SelectBox id="taalOptions" value={taal} onChange={handleTaalChange} />
+            <TaalSelectBox id="taalOptions" value={taal} onChange={(e) => setTaal(e.target.value)} />
           </div>
 
-          <div className="mx-10 my-5">
+          <div className="component-box">
+            <label htmlFor="options" className="label">
+              Scale:
+            </label>
+            <ScaleSelectBox id="scaleOptions" value={scale} onChange={(e) => setScale(e.target.value)} />
+          </div>
+
+          <div className="component-box">
+            <label htmlFor="tempoTextBox" className="label">
+              Tempo:
+            </label>
+            <InputBox id="tempoTextBox" style="input-text-box" placeholder="Enter tempo" value={tempo} onChange={(e) => setTempo(e.target.value)} />
+          </div>
+
+          </div>
+
+          <div className="component-box">
             <label htmlFor="lyricsTextBox" className="label">
               Lyrics:
             </label>
             <TextArea id="lyricsTextBox" style="text-box" placeholder="Enter lyrics delimited with space" value={lyrics} onChange={(e) => handleLyricsChange(e, setLyrics)} />
           </div>
 
-          <div className="mx-10 my-5">
+          <div className="component-box">
             <label htmlFor="notesTextBox" className="label">
               Notes:
             </label>
@@ -83,7 +103,7 @@ function App() {
           </div>
 
 
-          <div className="mx-10 my-5">
+          <div className="component-box">
             <label htmlFor="chordTextBox" className="label">
               Chord:
             </label>
@@ -91,65 +111,25 @@ function App() {
             {errors.chord && <p className="error">{errors.chord}</p>}
           </div>
 
-          <div className="flex flex-col items-center px-4 py-2">
-            <div className="grid">
-              {bhatkandeLayout.map((row, rowIndex) => (
-                <div key={rowIndex} className="border">
-                  {row.map((cell, colIndex) => (
-                    <button
-                      key={colIndex}
-                      onClick={() => handleKeyPress(cell)}
-                      className="keyboard-keys-bhatkande"
-                    >
-                      {cell}
-                    </button>
-                  ))}
-                </div>
-              ))}
-              <div className="flex justify-center items-center border">
-                <div key="space" onClick={() => handleKeyPress("space")} className="keyboard-keys">Space</div>
-                <div key="khali" onClick={() => handleKeyPress("-")} className="keyboard-keys-bhatkande">-</div>
-                <div key="continue" onClick={() => handleKeyPress("w")} className="keyboard-keys-bhatkande">w</div>
-                <div key="dugun" onClick={() => handleKeyPress("@")} className="keyboard-keys">2</div>
-                <div key="tigun" onClick={() => handleKeyPress("#")} className="keyboard-keys">3</div>
-                <div key="chaugun" onClick={() => handleKeyPress("$")} className="keyboard-keys">4</div>
-                <div key="Backspace" onClick={() => handleKeyPress("Backspace")} className="keyboard-keys">Backspace</div>
-              </div>
-            </div>
-          </div>
+          <Keyboard notes={notes} setNotes={setNotes}/>
 
-          <div className="mx-10 my-5">
+          <div className="component-box">
             <div id="exportPdf">
               <label className="label">
                 {title}
               </label>
+              <label className="label-pdf">
+                Taal: {taal}
+              </label>
+              <label className="label-pdf">
+                Scale: {scale}
+              </label>
+              <label className="label-pdf">
+                Tempo: {tempo}
+              </label>
 
-              <div className="mt-6 flex flex-wrap">
+              <Display taal={taal} chunkedLyrics={chunkedLyrics} chunkedNotes={chunkedNotes} chunkedChord={chunkedChord} />
 
-                {Array.from({ length: maxLength }).map((_, index) => (
-
-                  <div key={`block-${index}`} className="mb-6 pr-4 rounded-md">
-
-                    <div className="flex">
-                      {Array.from({ length: TaalCount[taal] }).map((_, cell) => (
-
-                        <>
-                          <div className="flex border">
-                            {Array.from({ length: 1 }).map((_, i) => (
-                              <div>
-                                <div className="print">{chunkedLyrics[index] && chunkedLyrics[index][cell] ? chunkedLyrics[index][cell] : ''}</div>
-                                <div className="print-notes">{chunkedNotes[index] && chunkedNotes[index][cell] ? chunkedNotes[index][cell] : ''}</div>
-                                <div className="print">{chunkedChord[index] && chunkedChord[index][cell] ? chunkedChord[index][cell] : ''}</div>
-                              </div>
-                            ))}
-                          </div>
-                        </>
-
-                      ))}
-                    </div>
-                  </div>
-                ))}
-              </div>
             </div>
           </div>
 
