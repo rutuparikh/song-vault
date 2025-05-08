@@ -13,7 +13,6 @@ export const TaalSelectBox = ({value, onChange}) => {
         onChange={onChange}
         className="select-box"
       >
-        {/* <option key={`Select`} value="">Select an option</option> */}
 
         {keys.map((key) => (
           <option key={TaalOptions[key]} value={TaalOptions[key]}>{TaalOptions[key]}</option>
@@ -24,8 +23,6 @@ export const TaalSelectBox = ({value, onChange}) => {
 };
 
 export const ScaleSelectBox = ({value, onChange}) => {
-
-  // const keys = Object.keys(Options);
 
   return (
     <div>

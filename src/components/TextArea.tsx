@@ -1,4 +1,4 @@
-const TextArea = ({ placeholder, value, onChange, style}) => {
+const TextArea = ({ placeholder, value, onChange, style, onSelect}) => {
     return (
         <>
             <div className="flex">
@@ -8,6 +8,7 @@ const TextArea = ({ placeholder, value, onChange, style}) => {
                     onChange={onChange}
                     className={style}
                     spellCheck="false"
+                    onSelect={onSelect}
                 />
             </div>
         </>

@@ -1,12 +1,21 @@
-export const handleKeyPress = (key, notes, setNotes) => {
+export const handleKeyPress = (key, notes, setNotes, cursorPos, setCursorPos) => {
+
+    let newNotes = notes;
+    let newCursorPos = cursorPos;
 
     if (key === 'Backspace') {
-        setNotes(notes.slice(0, -1));
+        if (cursorPos > 0) {
+            newNotes = notes.slice(0, cursorPos - 1) + notes.slice(cursorPos);
+            newCursorPos = cursorPos - 1;
+        }
+    } else if (key === 'space') {
+        newNotes = notes.slice(0, cursorPos) + ' ' + notes.slice(cursorPos);
+        newCursorPos = cursorPos + 1;
+    } else {
+        newNotes = notes.slice(0, cursorPos) + key + notes.slice(cursorPos);
+        newCursorPos = cursorPos + key.length;
     }
-    else if (key === 'space') {
-        setNotes(notes + ' ');
-    }
-    else {
-        setNotes(notes + key);
-    }
+
+    setNotes(newNotes);
+    setCursorPos(newCursorPos);
 };
