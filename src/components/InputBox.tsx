@@ -1,4 +1,4 @@
-const InputBox = ({ placeholder, value, onChange, style}) => {
+const InputBox = ({ placeholder, value, onChange, style}: {placeholder:string, value:string, onChange:React.ChangeEventHandler<HTMLInputElement>, style:string}) => {
     return (
         <>
             <div className="flex">

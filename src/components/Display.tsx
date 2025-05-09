@@ -1,6 +1,4 @@
-import { TaalCount } from '../enums/Taal.js';
-
-export const Display = ({ taal, chunkedLyrics, chunkedNotes, chunkedChord }) => {
+export const Display = ({ taal, chunkedLyrics, chunkedNotes, chunkedChord }: { taal: number; chunkedLyrics: string[][]; chunkedNotes: string[][]; chunkedChord: string[][] }) => {
 
     const maxLength = Math.max(chunkedLyrics.length, chunkedNotes.length, chunkedChord.length);
 
@@ -12,11 +10,11 @@ export const Display = ({ taal, chunkedLyrics, chunkedNotes, chunkedChord }) => 
                 <div key={`block-${index}`} className="mb-6 pr-4 rounded-md">
 
                     <div className="flex">
-                        {Array.from({ length: TaalCount[taal] }).map((_, cell) => (
+                        {Array.from({ length: taal }).map((_, cell) => (
 
                             <>
                                 <div className="flex border">
-                                    {Array.from({ length: 1 }).map((_, i) => (
+                                    {Array.from({ length: 1 }).map((_) => (
                                         <div>
                                             <div className="print">{chunkedLyrics[index] && chunkedLyrics[index][cell] ? chunkedLyrics[index][cell] : ''}</div>
                                             <div className="print-notes">{chunkedNotes[index] && chunkedNotes[index][cell] ? chunkedNotes[index][cell] : ''}</div>
@@ -24,7 +22,7 @@ export const Display = ({ taal, chunkedLyrics, chunkedNotes, chunkedChord }) => 
                                         </div>
                                     ))}
                                 </div>
-                            </>
+                            </>  
 
                         ))}
                     </div>

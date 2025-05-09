@@ -1,5 +1,5 @@
 
-export const chunkArray = (text, size) => {
+export const chunkArray = (text: string, size: number) => {
 
     const splitText = text.trim() ? text.replace(/\s+/g, ' ').split(" ") : [];
     

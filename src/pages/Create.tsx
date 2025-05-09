@@ -1,5 +1,3 @@
-import React, { useState, useEffect, useRef } from 'react';
-
 import '../tailwind.css';
 
 import TextArea from '../components/TextArea.tsx';
@@ -7,12 +5,13 @@ import { ScaleSelectBox, TaalSelectBox } from '../components/SelectBox.tsx';
 import handleLyricsChange from '../utils/LyricsHandler.tsx'
 import handleNotesChange from '../utils/NotesHandler.tsx'
 import handleChordChange from '../utils/ChordHandler.tsx'
-import { TaalCount } from '../enums/Taal.js';
+import taalData from '../config/taal.json' with { type: 'json' };
 import { chunkArray } from '../utils/OutputHandler.tsx';
 import { handleExport } from '../utils/ExportHandler.tsx';
 import InputBox from '../components/InputBox.tsx';
 import Keyboard from '../components/KeyBoard.tsx';
 import { Display } from '../components/Display.tsx';
+import { useState } from 'react';
 
 
 function Create() {
@@ -26,9 +25,11 @@ function Create() {
   const [cursorPos, setCursorPos] = useState(0);
   const [errors, setErrors] = useState({ lyrics: '', notes: '', chord: '' });
 
-  const chunkedLyrics = chunkArray(lyrics, TaalCount[taal]);
-  const chunkedNotes = chunkArray(notes, TaalCount[taal]);
-  const chunkedChord = chunkArray(chord, TaalCount[taal]);
+  const count = taalData.taalCount[taal as keyof typeof taalData.taalCount]; 
+
+  const chunkedLyrics = chunkArray(lyrics, count);
+  const chunkedNotes = chunkArray(notes, count);
+  const chunkedChord = chunkArray(chord, count);
 
   return (
     <>
@@ -40,7 +41,7 @@ function Create() {
             <label htmlFor="titleTextBox" className="label">
               Title:
             </label>
-            <InputBox id="titleTextBox" style="input-text-box" placeholder="Enter song title" value={title} onChange={(e) => setTitle(e.target.value)} />
+            <InputBox style="input-text-box" placeholder="Enter song title" value={title} onChange={(e) => setTitle(e.target.value)} />
           </div>
 
           <div className="flex">
@@ -49,21 +50,21 @@ function Create() {
             <label htmlFor="options" className="label">
               Taal:
             </label>
-            <TaalSelectBox id="taalOptions" value={taal} onChange={(e) => setTaal(e.target.value)} />
+            <TaalSelectBox value={taal} onChange={(e) => setTaal(e.target.value)} />
           </div>
 
           <div className="component-box">
             <label htmlFor="options" className="label">
               Scale:
             </label>
-            <ScaleSelectBox id="scaleOptions" value={scale} onChange={(e) => setScale(e.target.value)} />
+            <ScaleSelectBox value={scale} onChange={(e) => setScale(e.target.value)} />
           </div>
 
           <div className="component-box">
             <label htmlFor="tempoTextBox" className="label">
               Tempo:
             </label>
-            <InputBox id="tempoTextBox" style="input-text-box" placeholder="Enter tempo" value={tempo} onChange={(e) => setTempo(e.target.value)} />
+            <InputBox style="input-text-box" placeholder="Enter tempo" value={tempo} onChange={(e) => setTempo(e.target.value)} />
           </div>
 
           </div>
@@ -72,14 +73,14 @@ function Create() {
             <label htmlFor="lyricsTextBox" className="label">
               Lyrics:
             </label>
-            <TextArea id="lyricsTextBox" style="text-box" placeholder="Enter lyrics delimited with space" value={lyrics} onChange={(e) => handleLyricsChange(e, setLyrics)} />
+            <TextArea style="text-box" placeholder="Enter lyrics delimited with space" value={lyrics} onChange={(e) => handleLyricsChange(e, setLyrics)} onSelect={() => {}}/>
           </div>
 
           <div className="component-box">
             <label htmlFor="notesTextBox" className="label">
               Notes:
             </label>
-            <TextArea id="notesTextBox" style="text-box-notes" placeholder="Enter notes delimited with space" value={notes} onChange={(e) => handleNotesChange(e, setNotes, errors, setErrors)} onSelect={(e) => setCursorPos(e.target.selectionStart)}/>
+            <TextArea style="text-box-notes" placeholder="Enter notes delimited with space" value={notes} onChange={(e) => handleNotesChange(e, setNotes)} onSelect={(e) => setCursorPos((e.target as HTMLTextAreaElement).selectionStart || 0)}/>
             {errors.notes && <p className="error">{errors.notes}</p>}
           </div>
 
@@ -88,7 +89,7 @@ function Create() {
             <label htmlFor="chordTextBox" className="label">
               Chord:
             </label>
-            <TextArea id="chordTextBox" style="text-box" placeholder="Enter chord delimited with space" value={chord} onChange={(e) => handleChordChange(e, setChord, errors, setErrors)} />
+            <TextArea style="text-box" placeholder="Enter chord delimited with space" value={chord} onChange={(e) => handleChordChange(e, setChord, errors, setErrors)} onSelect={() => {}} />
             {errors.chord && <p className="error">{errors.chord}</p>}
           </div>
 
@@ -109,7 +110,7 @@ function Create() {
                 Tempo: {tempo}
               </label>
 
-              <Display taal={taal} chunkedLyrics={chunkedLyrics} chunkedNotes={chunkedNotes} chunkedChord={chunkedChord} />
+              <Display taal={count} chunkedLyrics={chunkedLyrics} chunkedNotes={chunkedNotes} chunkedChord={chunkedChord} />
 
             </div>
           </div>

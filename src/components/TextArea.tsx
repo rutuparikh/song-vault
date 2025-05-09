@@ -1,4 +1,4 @@
-const TextArea = ({ placeholder, value, onChange, style, onSelect}) => {
+const TextArea = ({ placeholder, value, onChange, style, onSelect}: { placeholder:string, value:string , onChange:React.ChangeEventHandler<HTMLTextAreaElement>, style:string, onSelect:React.ReactEventHandler<HTMLTextAreaElement>}) => {
     return (
         <>
             <div className="flex">
