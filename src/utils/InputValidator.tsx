@@ -1,15 +1,11 @@
 import constants from '../config/constants.json';
 
-export const tokenValidator = (value, tokenType) => {
+export const tokenValidator = (value: string) => {
 
 
-    const validValues = new Set(constants[`${tokenType}`]);
+    const validValues = new Set(constants["chords"]);
 
     var tokens = value.trim().split(" ");
-
-    if(tokenType=='notes'){
-      tokens = value.trim().split("");  
-    }
 
     const lastToken = tokens[tokens.length - 1];
 

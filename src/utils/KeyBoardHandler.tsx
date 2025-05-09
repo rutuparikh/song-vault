@@ -1,4 +1,4 @@
-export const handleKeyPress = (key, notes, setNotes, cursorPos, setCursorPos) => {
+export const handleKeyPress = (key: string, notes: string, setNotes: (value: string) => void, cursorPos: number, setCursorPos: (value: number) => void) => {
 
     let newNotes = notes;
     let newCursorPos = cursorPos;

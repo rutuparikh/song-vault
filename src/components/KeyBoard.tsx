@@ -3,7 +3,7 @@ import { handleKeyPress } from '../utils/KeyBoardHandler.tsx';
 
 const bhatkandeLayout = fonts.bhatkande_hindi;
 
-const Keyboard = ({ notes, setNotes, cursorPos, setCursorPos }) => {
+const Keyboard = ({ notes, setNotes, cursorPos, setCursorPos } : {notes:string, setNotes: (value: string) => void, cursorPos:number, setCursorPos:(value: number) => void}) => {
     return (
         <div className="flex flex-col items-center px-4 py-2">
             <div className="grid">

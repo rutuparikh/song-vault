@@ -1,6 +1,7 @@
-import { tokenValidator } from './InputValidator.tsx';
+import { ChangeEvent } from 'react';
 
-const handleNotesChange = (event, setNotes, error, setErrors) => {
+const handleNotesChange = (event: ChangeEvent<HTMLTextAreaElement>,
+    setNotes: (value: string) => void) => {
 
     const value = event.target.value;
     setNotes(value);

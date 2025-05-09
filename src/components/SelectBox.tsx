@@ -1,9 +1,7 @@
-import { TaalOptions } from '../enums/Taal.js';
+import taalData from '../config/taal.json';
 import { chords } from '../config/constants.json';
 
-export const TaalSelectBox = ({value, onChange}) => {
-
-  const keys = Object.keys(TaalOptions);
+export const TaalSelectBox = ({value, onChange}: {value:string, onChange: React.ChangeEventHandler<HTMLSelectElement>}) => {
 
   return (
     <div>
@@ -14,15 +12,17 @@ export const TaalSelectBox = ({value, onChange}) => {
         className="select-box"
       >
 
-        {keys.map((key) => (
-          <option key={TaalOptions[key]} value={TaalOptions[key]}>{TaalOptions[key]}</option>
+        {Object.entries(taalData.taalOptions).map(([key, value]) => (
+          <option key={key} value={value}>
+            {value}
+          </option>
         ))}
       </select>
     </div>
   );
 };
 
-export const ScaleSelectBox = ({value, onChange}) => {
+export const ScaleSelectBox = ({value, onChange}: {value:string, onChange: React.ChangeEventHandler<HTMLSelectElement>}) => {
 
   return (
     <div>
