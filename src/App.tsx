@@ -1,5 +1,5 @@
 
-import { HashRouter as Router, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 
 import './tailwind.css';
 
@@ -16,10 +16,10 @@ function App() {
       <div className="flex flex-col min-h-screen">
       <Header />
       <main className="flex-grow w-screen">
-       <Router>
+       <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create" element={<Create />} />
-      </Router> 
+      </Routes> 
       </main>
       <Footer />
       </div>
